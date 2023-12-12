@@ -84,7 +84,7 @@ def plot_categorical_visualizations(df, categorical_columns):
     for i, column in enumerate(categorical_columns):
         # Bar Plot
         sns.countplot(x=column, hue='HeartDisease', data=df, ax=axes[i, 0])
-        axes[i, 0].set_title(f'Bar Plot for HeartDisease by {column.capitalize()}')
+        axes[i, 0].set_title(f'Bar Plot for HeartDisease by {column}')
 
         # Add count values above the bars
         for p in axes[i, 0].patches:
@@ -93,7 +93,7 @@ def plot_categorical_visualizations(df, categorical_columns):
 
         # Pie Chart
         df[column].value_counts().plot.pie(autopct='%1.1f%%', ax=axes[i, 1])
-        axes[i, 1].set_title(f'Pie Chart for {column.capitalize()}')
+        axes[i, 1].set_title(f'Pie Chart for {column}')
         axes[i, 1].set_ylabel(None)
 
     # Adjust layout
