@@ -78,19 +78,23 @@ def dataclean(df):
 
 def plot_categorical_visualizations(df, categorical_columns):
     # Create subplots
-    fig, axes = plt.subplots(len(categorical_columns), 2, figsize=(12, 24))
+    fig, axes = plt.subplots(len(categorical_columns), 2, figsize=(15, 30))
     fig.suptitle('Categorical Column Visualizations', y=1.02)
 
     for i, column in enumerate(categorical_columns):
         # Bar Plot
-        sns.countplot(x=column, hue='HeartDisease',data=df, ax=axes[i, 0])
+        sns.countplot(x=column, hue='HeartDisease', data=df, ax=axes[i, 0])
         axes[i, 0].set_title(f'Bar Plot for HeartDisease by {column.capitalize()}')
+
+        # Add count values above the bars
+        for p in axes[i, 0].patches:
+            axes[i, 0].annotate(f'{p.get_height()}', (p.get_x() + p.get_width() / 2., p.get_height()),
+                               ha='center', va='center', xytext=(0, 5), textcoords='offset points')
 
         # Pie Chart
         df[column].value_counts().plot.pie(autopct='%1.1f%%', ax=axes[i, 1])
         axes[i, 1].set_title(f'Pie Chart for {column.capitalize()}')
         axes[i, 1].set_ylabel(None)
-
 
     # Adjust layout
     plt.tight_layout()
@@ -127,7 +131,10 @@ def plot_stroke(df):
     ax2.pie(df['HeartDisease'].value_counts(), labels=df['HeartDisease'].value_counts().index, autopct='%1.1f%%')
     ax2.axis('equal')
     sns.countplot(x='HeartDisease',data=df, ax=ax1,color='green')
-    # ax1.legend(['No Stroke', 'Stroke'])
+    for p in ax1.patches:
+                ax1.annotate(f'{p.get_height()}', (p.get_x() + p.get_width() / 2., p.get_height()),
+                                ha='center', va='center', xytext=(0, 5), textcoords='offset points')
+    plt.tight_layout()    
     st.pyplot(fig)
 
 # this is the main function in which we define our webpage  
