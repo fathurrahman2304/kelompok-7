@@ -88,7 +88,7 @@ def plot_categorical_visualizations(df, categorical_columns):
 
         # Add count values above the bars
         for p in axes[i, 0].patches:
-            axes[i, 0].annotate(f'{p.get_height()}', (p.get_x() + p.get_width() / 2., p.get_height()),
+            axes[i, 0].annotate(f'{round(p.get_height())}', (p.get_x() + p.get_width() / 2., p.get_height()),
                                ha='center', va='center', xytext=(0, 5), textcoords='offset points')
 
         # Pie Chart
@@ -132,7 +132,7 @@ def plot_stroke(df):
     ax2.axis('equal')
     sns.countplot(x='HeartDisease',data=df, ax=ax1,color='green')
     for p in ax1.patches:
-                ax1.annotate(f'{p.get_height()}', (p.get_x() + p.get_width() / 2., p.get_height()),
+                ax1.annotate(f'{round(p.get_height())}', (p.get_x() + p.get_width() / 2., p.get_height()),
                                 ha='center', va='center', xytext=(0, 5), textcoords='offset points')
     plt.tight_layout()    
     st.pyplot(fig)
