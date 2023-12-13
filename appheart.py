@@ -126,7 +126,7 @@ def plot_numeric_visualizations(df, numeric_columns):
 # Example usage:
 
 
-def plot_stroke(df):
+def plot_heartdisease(df):
     fig, (ax1,ax2) = plt.subplots(1,2,figsize=(12, 5))
     ax2.pie(df['HeartDisease'].value_counts(), labels=df['HeartDisease'].value_counts().index, autopct='%1.1f%%')
     ax2.axis('equal')
@@ -160,7 +160,7 @@ def main():
         """
         st.markdown(html_temp, unsafe_allow_html = True)
         st.subheader('Count of Heart Diseases')
-        plot_stroke(df) 
+        plot_heartdisease(df) 
         selected_feature = st.selectbox('Pilih Kolom:',['Kolom Kategorik','Kolom Numerik'])
         if selected_feature == 'Kolom Kategorik':
             col_categorik = ['Sex', 'ChestPainType', 'FastingBS',
